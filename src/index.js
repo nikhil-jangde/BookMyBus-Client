@@ -5,6 +5,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './Redux/store/store'
 import { BrowserRouter } from 'react-router-dom';
+import "react-phone-input-2/lib/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
