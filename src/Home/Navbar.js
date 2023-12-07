@@ -87,10 +87,9 @@ function Navbar(props,{isDivVisible,setauth}) {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+      children: `${name[0]}`,
     };
   }
-  
   
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-20 bg-white shadow-md shadow-slate-500">

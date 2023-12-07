@@ -24,7 +24,7 @@ function Profile(props) {
         if (!token) {
           navigate('/')
         }
-            axios.get(`http://localhost:5000/Api/Verify-token/${token}`)
+            axios.get(`https://book-my-bus-server.vercel.app/Api/Verify-token/${token}`)
             .then(result => {
               if (result.status === 200) {
                 const userData = result.data;

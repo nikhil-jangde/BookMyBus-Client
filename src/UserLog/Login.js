@@ -2,7 +2,6 @@ import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
 import { CgSpinner } from "react-icons/cg";
 import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import { useState } from "react";
-import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { auth } from "../firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
@@ -13,8 +12,15 @@ import { connect } from "react-redux";
 import axios from "axios";
 import Signup from "./Signup";
 import { setauth } from "../Redux/actions/setauth";
+import { TextField, Box, InputAdornment } from "@mui/material";
+import { useForm } from "react-hook-form";
 
 const Login = ({ isDivVisible, setauth }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   // for otp verification and user login
   const [verified, setVerified] = useState(false);
@@ -31,8 +37,8 @@ const Login = ({ isDivVisible, setauth }) => {
     try {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
       const confirmation = await signInWithPhoneNumber(auth, mobile, recaptcha);
-      setShowOTP(true);
       setLoading(false);
+      setShowOTP(true);
       setConfirmationResult(confirmation);
     } catch (err) {
       console.log(err);
@@ -47,7 +53,6 @@ const Login = ({ isDivVisible, setauth }) => {
       axios
         .get(`https://book-my-bus-server.vercel.app/Api/check-user/${mobile}`)
         .then((result) => {
-          console.log("line no 65 status", result);
           if (result.status === 200) {
             const userData = result.data.user;
             localStorage.setItem("token", userData._id);
@@ -141,15 +146,34 @@ const Login = ({ isDivVisible, setauth }) => {
                     >
                       Verify your phone number
                     </label>
-                    <PhoneInput
-                      country={"in"}
-                      value={mobile}
-                      onChange={(mobile) => {
-                        setMobile("+" + mobile);
+                    <Box 
+                    component="form"
+                    sx={{ "& > :not(style)": { width: "100%",borderRadius:"5px" } }}
+                    autoComplete="off"
+                  >
+                  <TextField 
+                    placeholder="10 digit mobile number"
+                    {...register("mobile", {
+                      required: true,
+                      pattern: /^[0-9]{10}$/,
+                    })}
+                    onChange={(e)=>{
+                        setMobile('+91'+e.target.value)
                       }}
-                    />
+                    error={errors["mobile"] ? true : false}
+                    helperText={
+                errors["mobile"] &&
+                "Please enter a 10-digit mobile number"
+              }
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment  position="start">+91</InputAdornment> 
+                      ),
+                    }}
+                  />
+                  </Box>
                     <button
-                      onClick={SendOTP}
+                      onClick={handleSubmit(SendOTP)}
                       className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
                     >
                       {loading && (
