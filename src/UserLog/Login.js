@@ -2,11 +2,6 @@ import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
 import { CgSpinner } from "react-icons/cg";
 import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import { useState } from "react";
-<<<<<<< HEAD
-import "react-phone-input-2/lib/style.css";
-=======
-import PhoneInput from "react-phone-input-2";
->>>>>>> 56722e615bdf51590048ad354645670fce5683cf
 import { auth } from "../firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { Toaster } from "react-hot-toast";
