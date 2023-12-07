@@ -3,7 +3,7 @@ import { CgSpinner } from "react-icons/cg";
 import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import "react-phone-input-2/dist/style.css"; // or the correct path based on your project structure
 import { auth } from "../firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { Toaster } from "react-hot-toast";
