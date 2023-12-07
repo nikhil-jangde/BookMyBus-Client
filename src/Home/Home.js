@@ -42,7 +42,7 @@ function Home(props) {
   useEffect(() => {
     // Fetch data from the backend API
     axios
-      .get("http://localhost:5000/Api/districts")
+      .get("https://book-my-bus-server.vercel.app/Api/districts")
       .then((result) => {
         //console.log("API Response:", result);
         if (result.status === 200) {

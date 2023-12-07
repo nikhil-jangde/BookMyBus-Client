@@ -13,8 +13,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 import Signup from "./Signup";
 import { setauth } from "../Redux/actions/setauth";
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Stack';
 
 const Login = ({ isDivVisible, setauth }) => {
 
@@ -47,7 +45,7 @@ const Login = ({ isDivVisible, setauth }) => {
     try {
       await confirmationResult.confirm(otp);
       axios
-        .get(`http://localhost:5000/Api/check-user/${mobile}`)
+        .get(`https://book-my-bus-server.vercel.app/Api/check-user/${mobile}`)
         .then((result) => {
           console.log("line no 65 status", result);
           if (result.status === 200) {

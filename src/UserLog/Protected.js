@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { setauth } from '../Redux/actions/setauth';
 import { connect } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Protected({ isDivVisible, setauth, Component }) {
   const navigate = useNavigate()

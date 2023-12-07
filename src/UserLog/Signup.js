@@ -18,7 +18,7 @@ const Signup = ({mobile,setauth,isDivVisible}) =>{
 
       async function createUser() {
         try {
-          const adduser = await axios.post('http://localhost:5000/Api/CreateUser',
+          const adduser = await axios.post('https://book-my-bus-server.vercel.app/Api/CreateUser',
           {username:signupData.username, email:signupData.email,mobile:mobile,gender:signupData.gender});
           if (adduser.status === 200) {
             // User created successfully

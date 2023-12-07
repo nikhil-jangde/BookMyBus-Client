@@ -51,7 +51,7 @@ console.log('incrementedDateString',incrementedDateString); // Output: "2023-12-
 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/Api/get-buses')
+    axios.get('https://book-my-bus-server.vercel.app/Api/get-buses')
       .then(result => {
         if (result.status === 200) {
           setBuses(result.data);

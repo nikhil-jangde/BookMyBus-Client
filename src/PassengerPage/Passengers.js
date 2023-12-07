@@ -122,7 +122,7 @@ function Passengers(props) {
   const handlePayment = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/PaymentApi/create-checkout-session', {
+      const response = await axios.post('https://book-my-bus-server.vercel.app/PaymentApi/create-checkout-session', {
         amount: totalFare,
         currency: 'inr',
         data: finaldetails, 
