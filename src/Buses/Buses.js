@@ -582,7 +582,7 @@ console.log('incrementedDateString',incrementedDateString); // Output: "2023-12-
                           </div>
                           <h1 className='flex flex-wrap p-1 my-1'><span className='font-bold '>Selected Seats : </span> {selectedSeats.find((selectedBus) => selectedBus.id === bus._id)?.selectedSeats.length > 0 ? (
                             selectedSeats.find((selectedBus) => selectedBus.id === bus._id)?.selectedSeats.map((seat, seatIndex) => (
-                              <div key={seatIndex}> {` ${seat} , `}</div>
+                              <div key={seatIndex}> {` ${seat } ,  `}</div>
                             ))) : (<div> No seats selected</div>)} </h1>
                           <h1 className='p-1 mx-auto my-1 font-bold'>Total Amount : <span className='text-lg font-bold text-red-600'>
                             ₹ {selectedSeats.find((selectedBus) => selectedBus.id === bus._id)?.selectedPrice.reduce((totalPrice, Price) => totalPrice + Price, 0)}</span></h1>
@@ -593,15 +593,19 @@ console.log('incrementedDateString',incrementedDateString); // Output: "2023-12-
                               // Find the object with matching 'id' and store it in a variable
                               const filteredbus = selectedSeats.find((seat) => seat.id === bus._id);
 
-                              if (filteredbus) {
+                              if (filteredbus && selectedSeats.find((selectedBus) => selectedBus.id === bus._id)?.selectedSeats.length > 0) {
                                 // If a matching object is found, send it to the action
                                 const token = localStorage.getItem('token')
                                if (token) {
                                 props.sendinitialdata(filteredbus);
                                 navigate("/Passengers");
-                               } else{
+                               }
+                               else{
                                 props.setauth(!isDivVisible);
                                }
+                              }
+                              else{
+                                alert('select at least 1 seat')
                               }
                             }}>
                             Proceed To Book

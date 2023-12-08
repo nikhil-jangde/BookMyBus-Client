@@ -121,11 +121,26 @@ function Passengers(props) {
   
   const handlePayment = async (e) => {
     e.preventDefault();
+  
+    // Check if any passenger data is empty
+    const isPassengerDataValid = finaldetails && finaldetails.passengers.every(passenger => {
+      return passenger.name.trim() !== '' && passenger.age !== '' && passenger.gender.trim() !== '';
+    });
+  
+    if (!isPassengerDataValid) {
+      // If any passenger data is empty, display an error or prevent payment
+      alert('Please fill in all passenger details before proceeding to payment.');
+      // You can also display a user-friendly error message or prevent further action
+      return;
+    }
+  
     try {
+      // Continue with the payment process if passenger data is valid
+  
       const response = await axios.post('https://book-my-bus-server.vercel.app/PaymentApi/create-checkout-session', {
         amount: totalFare,
         currency: 'inr',
-        data: finaldetails, 
+        data: finaldetails,
       });
   
       const session = response.data;
@@ -142,6 +157,7 @@ function Passengers(props) {
       console.error('Error making the Axios request:', error);
     }
   };
+  
 
   
 
