@@ -52,7 +52,7 @@ function Profile(props) {
         let id = user._id;
         e.preventDefault();
         try {
-          await axios.put(`http://localhost:5000/Api/updateuser/${id}`, { username, email, gender});
+          await axios.put(`https://book-my-bus-server.vercel.app/Api/updateuser/${id}`, { username, email, gender});
           alert('User updated successfully!');
           window.location.reload();
         } catch (error) {
